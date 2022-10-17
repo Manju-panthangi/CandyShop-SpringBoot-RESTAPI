@@ -22,8 +22,6 @@ public class CustomerController {
     @Autowired
     private CustomerService customerService;
     @Autowired
-    private CandyService candyService;
-    @Autowired
     private OrderService orderService;
 
     @PostMapping("/registration")
@@ -31,22 +29,13 @@ public class CustomerController {
         return customerService.registerCustomer(customer);
     }
 
-
-    // To be shifted to admin controller
-    @PostMapping("/addCandy")
-    public Candy addCandy(@RequestBody @Valid Candy candy){
-        return candyService.addCandy(candy);
-    }
-
-    @GetMapping("/menu")
-    public List<Candy> displayMenu(){
-        return candyService.getAllCandies();
-    }
-
     @PostMapping("/order")
     public Order placeOrder(@RequestBody OrderRequest orderRequest){
         return orderService.placeOrder(orderRequest);
     }
 
-
+    @GetMapping("/ordersByCustomerId/{customerId}")
+    public List<Order> findOrdersByCustomerId(@PathVariable Long customerId){
+        return orderService.findByCustomerId(customerService.getById(customerId));
+    }
 }

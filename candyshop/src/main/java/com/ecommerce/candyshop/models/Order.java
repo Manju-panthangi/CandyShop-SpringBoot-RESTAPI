@@ -11,11 +11,11 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long orderId;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @NotNull(message = "Customer shouldn't be null")
     private Customer customer;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @NotNull(message = "Candy shouldn't be null")
     private Candy candy;
 
@@ -23,6 +23,7 @@ public class Order {
     @NotNull(message = "Order status shouldn't be null")
     private ORDER_STATUS order_status = ORDER_STATUS.INPROGRESS;
 
+    @Column(columnDefinition = "integer default 0")
     private Integer quantity;
     @NotNull
     private double amount;
