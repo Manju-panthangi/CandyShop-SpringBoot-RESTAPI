@@ -18,6 +18,7 @@ public class Candy {
     private String name;
 
     @NotNull(message = "Price shouldn't be null")
+    @NotEmpty(message = "Price shouldn't be empty")
     private double price;
 
 
