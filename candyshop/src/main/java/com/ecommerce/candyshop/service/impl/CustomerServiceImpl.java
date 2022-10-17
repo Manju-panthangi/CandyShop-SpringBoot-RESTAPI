@@ -14,24 +14,11 @@ public class CustomerServiceImpl implements CustomerService {
     @Autowired
     private CustomerRepository customerRepository;
 
-    //private CustomerValidation customerValidation;
-
 
     @Override
     public Customer registerCustomer(Customer customer) {
-        System.out.println("Tesing Service");
-
-//        if(checkIfNameIsEmptyString(customer)){
-//
-//            throw new InvalidCustomerDetails("Name can't be an empty string");
-//        } else if (checkIfPhoneNumberAlreadyExists(customer)) {
-//            throw new InvalidCustomerDetails("Name can't be an empty string");
-//        }
-//        System.out.println("Testing return");
         return customerRepository.save(customer);
     }
-
-
 
 
 
