@@ -1,9 +1,6 @@
 package com.ecommerce.candyshop.service.impl;
 
-import com.ecommerce.candyshop.models.Customer;
-import com.ecommerce.candyshop.models.ORDER_STATUS;
-import com.ecommerce.candyshop.models.Order;
-import com.ecommerce.candyshop.models.OrderRequest;
+import com.ecommerce.candyshop.models.*;
 import com.ecommerce.candyshop.repository.CandyRepository;
 import com.ecommerce.candyshop.repository.CustomerRepository;
 import com.ecommerce.candyshop.repository.OrderRepository;
@@ -27,10 +24,12 @@ public class OrderServiceImpl implements OrderService {
     public Order placeOrder(OrderRequest orderRequest) {
 
         Order order = new Order();
-        order.setCustomer(customerRepository.findByPhoneNumber(orderRequest.getPhoneNumber()).get());
-        order.setCandy(candyRepository.getReferenceById(orderRequest.getCandieId()));
+        Candy candy = candyRepository.findById(orderRequest.getCandieId()).get();
+        Customer customer = customerRepository.findByPhoneNumber(orderRequest.getPhoneNumber()).get();
+        order.setCustomer(customer);
+        order.setCandy(candy);
         order.setQuantity(orderRequest.getQuantity());
-        order.setAmount(candyRepository.getReferenceById(orderRequest.getCandieId()).getPrice()*orderRequest.getQuantity());
+        order.setAmount(candy.getPrice()*orderRequest.getQuantity());
 
         return orderRepository.save(order);
     }

@@ -1,5 +1,7 @@
 package com.ecommerce.candyshop.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -9,6 +11,7 @@ import javax.validation.constraints.NotNull;
 public class Candy {
 
     //Fields for a candies
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long candieId;

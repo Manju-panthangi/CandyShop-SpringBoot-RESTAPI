@@ -1,5 +1,8 @@
 package com.ecommerce.candyshop.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -7,13 +10,16 @@ import javax.validation.constraints.NotNull;
 @Table(name = "orders")
 public class Order {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long orderId;
 
+
     @ManyToOne(cascade = CascadeType.PERSIST)
     @NotNull(message = "Customer shouldn't be null")
     private Customer customer;
+
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     @NotNull(message = "Candy shouldn't be null")
