@@ -51,11 +51,10 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order updateOrderStatus(Long orderId, String orderStatus) {
-        Order order = new Order();
+        Order order = orderRepository.findById(orderId).get();
         orderStatus=orderStatus.toUpperCase();
-        order = orderRepository.getReferenceById(orderId);
         order.setOrder_status(ORDER_STATUS.valueOf(orderStatus));
         orderRepository.save(order);
-        return orderRepository.getReferenceById(orderId);
+        return orderRepository.findById(orderId).get();
     }
 }
