@@ -15,7 +15,7 @@
 <br>
 
 | API Method        | URI           | Usecase  |
-| ------------- |:-------------:| :-----:|
+| ------------- |-------------|-----|
 | GET    | "/menu"     |   Display candies table|
 
 ## Customer Functionalities
@@ -26,8 +26,8 @@
 
 
 ## Usecases and API Endpoints For Customer
-| API Method        |          URI           | Usecase  |
-| ------------- |:-------------:| :-----:|
+| API Method        | URI           | Usecase  |
+| ------------- |---------------|-----|
 | POST    | "/customer/registration"     |   Add a customer to customer table|
 | POST      | "/customer/order" | Add an order to order table for a customer|
 | GET      | "/customer/ordersByCustomerId/{customerId}" | Get customer by id |
@@ -36,5 +36,12 @@
 
 ### 1. Admin will be able to prepare menu by adding candies.
 ### 2. Admin will be able to view all the orders placed by the customer.
-### 3. Admin will be 
+### 3. Admin will be able update the status of an order to success, failed or delivered.
+
+## Usecases and API Endpoints For Admin
+| API Method        | URI           | Usecase  |
+| ------------- |-------------|-----|
+| POST    | "admin/addCandy"     |   add a cady to candy table|
+| GET      | "admin/orders" | get all rows from orders table |
+| PUT      | "admin/updateOrderStatus" | update order status value in orders table using order id|
 
