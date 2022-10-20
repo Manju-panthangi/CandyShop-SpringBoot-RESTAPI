@@ -30,6 +30,9 @@ cd candyshop
 
 ```
 
+ 3. Go to application.properties
+ 
+
 
 
 
