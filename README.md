@@ -30,7 +30,24 @@ cd candyshop
 
 ```
 
- 3. Go to application.properties
+ 3. Go to application.properties.
+<br>
+    ![Alt text](Resources/fileStructureForApplicationProperties.PNG)
+4. Update username and password of mysql in application.properties
+<br>
+   spring.datasource.username=yourUsername
+<br>
+   spring.datasource.password=yourPassword
+<br>
+By default username is root with no password.
+5. Run CandyshopApplication.java file.
+6. Open http://localhost:8080/swagger-ui/index.html# in browser.
+7.  Enter /v3/api-docs in explore.
+This opens up a swagger.
+
+Swagger describes the structure of the REST API so that machines can read and mock them.
+By this automations made by Swagger, the API documentation process is a lot easier for developers to generate and maintain.
+
  
 
 
