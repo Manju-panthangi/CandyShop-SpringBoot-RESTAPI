@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 @Table(name = "orders")
@@ -21,26 +22,17 @@ public class Order {
     private Customer customer;
 
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    @NotNull(message = "Candy shouldn't be null")
-    private Candy candy;
+    @OneToMany(cascade = CascadeType.PERSIST)
+    @NotNull(message = "Candy orders shouldn't be null")
+    private List<CandyOrders> candyOrdersList;
+
 
     @Enumerated(EnumType.STRING)
     @NotNull(message = "Order status shouldn't be null")
     private ORDER_STATUS order_status = ORDER_STATUS.INPROGRESS;
 
-    @Column(columnDefinition = "integer default 0")
-    private Integer quantity;
     @NotNull
     private double amount;
-
-    public Integer getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
 
     public Long getOrderId() {
         return orderId;
@@ -58,12 +50,12 @@ public class Order {
         this.customer = customer;
     }
 
-    public Candy getCandy() {
-        return candy;
+    public List<CandyOrders> getCandyOrdersList() {
+        return candyOrdersList;
     }
 
-    public void setCandy(Candy candy) {
-        this.candy = candy;
+    public void setCandyOrdersList(List<CandyOrders> candyOrdersList) {
+        this.candyOrdersList = candyOrdersList;
     }
 
     public ORDER_STATUS getOrder_status() {

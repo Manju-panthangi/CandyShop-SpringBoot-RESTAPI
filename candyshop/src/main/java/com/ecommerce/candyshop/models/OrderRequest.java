@@ -1,10 +1,12 @@
 package com.ecommerce.candyshop.models;
 
+import java.util.ArrayList;
+
 public class OrderRequest {
 
     private String phoneNumber;
-    private Long candieId;
-    private  int quantity;
+    private ArrayList<CandyQuantityPair> candyQuantityPairList;
+
 
     public String getPhoneNumber() {
         return phoneNumber;
@@ -14,19 +16,11 @@ public class OrderRequest {
         this.phoneNumber = phoneNumber;
     }
 
-    public Long getCandieId() {
-        return candieId;
+    public ArrayList<CandyQuantityPair> getCandyQuantityPairList() {
+        return candyQuantityPairList;
     }
 
-    public void setCandieId(Long candieId) {
-        this.candieId = candieId;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setCandyQuantityPairList(ArrayList<CandyQuantityPair> candyQuantityPairList) {
+        this.candyQuantityPairList = candyQuantityPairList;
     }
 }
