@@ -99,3 +99,6 @@ By this automations made by Swagger, the API documentation process is a lot easi
 | GET      | "admin/orders" | get all rows from orders table |
 | PUT      | "admin/updateOrderStatus" | update order status value in orders table using order id|
 
+## [Database Design](https://app.quickdatabasediagrams.com/#/d/jYF3CD)
+
+
