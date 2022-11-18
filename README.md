@@ -101,4 +101,5 @@ By this automations made by Swagger, the API documentation process is a lot easi
 
 ## [Database Design](https://app.quickdatabasediagrams.com/#/d/jYF3CD)
 
-
+<br>
+![db Design](Resources/CandyShopDatabaseDiagram.PNG)
