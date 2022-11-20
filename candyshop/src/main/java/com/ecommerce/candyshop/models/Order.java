@@ -18,7 +18,7 @@ public class Order {
     @NotNull(message = "Customer shouldn't be null")
     private Customer customer;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private List<OrderLine> orderLineList;
 
 

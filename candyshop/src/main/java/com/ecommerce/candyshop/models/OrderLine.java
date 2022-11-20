@@ -1,5 +1,7 @@
 package com.ecommerce.candyshop.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -16,8 +18,9 @@ public class OrderLine {
     private Candy candy;
     private int quantity=1;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_order_id")
+    @JsonIgnore
     private Order order;
 
     public Order getOrder() {
