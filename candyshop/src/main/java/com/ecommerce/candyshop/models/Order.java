@@ -1,8 +1,5 @@
 package com.ecommerce.candyshop.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -21,10 +18,8 @@ public class Order {
     @NotNull(message = "Customer shouldn't be null")
     private Customer customer;
 
-
-    @OneToMany(cascade = CascadeType.PERSIST)
-    @NotNull(message = "Candy orders shouldn't be null")
-    private List<CandyOrders> candyOrdersList;
+    @OneToMany(mappedBy = "order")
+    private List<OrderLine> orderLineList;
 
 
     @Enumerated(EnumType.STRING)
@@ -50,12 +45,12 @@ public class Order {
         this.customer = customer;
     }
 
-    public List<CandyOrders> getCandyOrdersList() {
-        return candyOrdersList;
+    public List<OrderLine> getCandyOrdersList() {
+        return orderLineList;
     }
 
-    public void setCandyOrdersList(List<CandyOrders> candyOrdersList) {
-        this.candyOrdersList = candyOrdersList;
+    public void setCandyOrdersList(List<OrderLine> orderLineList) {
+        this.orderLineList = orderLineList;
     }
 
     public ORDER_STATUS getOrder_status() {

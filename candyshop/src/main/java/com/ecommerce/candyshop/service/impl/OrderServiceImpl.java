@@ -1,6 +1,7 @@
 package com.ecommerce.candyshop.service.impl;
 
 import com.ecommerce.candyshop.models.*;
+import com.ecommerce.candyshop.repository.OrderLineRepository;
 import com.ecommerce.candyshop.repository.CandyRepository;
 import com.ecommerce.candyshop.repository.CustomerRepository;
 import com.ecommerce.candyshop.repository.OrderRepository;
@@ -19,19 +20,38 @@ public class OrderServiceImpl implements OrderService {
     private CustomerRepository customerRepository;
     @Autowired
     private CandyRepository candyRepository;
+    @Autowired
+    private OrderLineRepository orderLineRepository;
 
     @Override
     public Order placeOrder(OrderRequest orderRequest) {
 
         Order order = new Order();
-        Candy candy = candyRepository.findById(orderRequest.getCandieId()).get();
         Customer customer = customerRepository.findByPhoneNumber(orderRequest.getPhoneNumber()).get();
-        order.setCustomer(customer);
-        order.setCandy(candy);
-        order.setQuantity(orderRequest.getQuantity());
-        order.setAmount(candy.getPrice()*orderRequest.getQuantity());
 
-        return orderRepository.save(order);
+        order.setCustomer(customer);
+        orderRepository.save(order);
+
+        List<CandyQuantityPair> candyQuantityPairList = orderRequest.getCandyQuantityPairList();
+        double amount =0;
+
+        for (CandyQuantityPair candyQuantityPair: candyQuantityPairList
+             ) {
+
+            OrderLine orderLine = new OrderLine();
+            Candy candy = candyRepository.getReferenceById(candyQuantityPair.getCandieId());
+
+            orderLine.setCandy(candy);
+            orderLine.setQuantity(candyQuantityPair.getQuantity());
+            amount = amount + candy.getPrice()*candyQuantityPair.getQuantity();
+            orderLine.setOrder(order);
+
+            orderLineRepository.save(orderLine);
+
+        }
+        order.setAmount(amount);
+
+        return  orderRepository.save(order);
     }
 
     @Override

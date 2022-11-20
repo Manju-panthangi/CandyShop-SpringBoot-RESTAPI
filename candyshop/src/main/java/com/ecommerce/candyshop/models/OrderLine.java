@@ -4,8 +4,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "candy_orders")
-public class CandyOrders {
+@Table(name = "order_line")
+public class OrderLine {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,9 +16,17 @@ public class CandyOrders {
     private Candy candy;
     private int quantity=1;
 
-    @NotNull(message = "order can't be null")
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "order_order_id")
     private Order order;
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
 
 
     public Long getCandiesOrderId() {
@@ -37,14 +45,6 @@ public class CandyOrders {
         this.candy = candy;
     }
 
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
-    }
-
     public int getQuantity() {
         return quantity;
     }
@@ -52,4 +52,5 @@ public class CandyOrders {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+
 }
